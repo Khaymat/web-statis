@@ -1,9 +1,7 @@
-"use client"
-
 import Link from "next/link"
-import { motion } from "framer-motion"
 import fs from "fs"
 import path from "path"
+import ArticleList from "@/components/ArticleList" // Updated import path
 
 interface Article {
   slug: string
@@ -15,6 +13,13 @@ interface Article {
 
 async function getArticles(): Promise<Article[]> {
   const articlesDir = path.join(process.cwd(), "app/blog/articles")
+
+  // Check if the directory exists
+  if (!fs.existsSync(articlesDir)) {
+    console.warn("Articles directory not found, returning empty list.")
+    return []
+  }
+
   const files = fs.readdirSync(articlesDir)
 
   const articles = files
@@ -58,28 +63,7 @@ export default async function BlogPage() {
           <p className="text-lg text-gray-700">Guidance, counseling, and insights for your thesis journey</p>
         </div>
 
-        <div className="grid gap-6">
-          {articles.map((article, index) => (
-            <motion.article
-              key={article.slug}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-pink-500"
-            >
-              <Link href={`/blog/${article.slug}`} className="group">
-                <h2 className="text-2xl font-bold font-playfair text-gray-900 group-hover:text-pink-600 transition-colors mb-2">
-                  {article.title}
-                </h2>
-              </Link>
-              <p className="text-gray-600 mb-4">{article.description}</p>
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <span>{article.author}</span>
-                <span>{new Date(article.date).toLocaleDateString()}</span>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        <ArticleList articles={articles} />
 
         {articles.length === 0 && (
           <div className="text-center py-12">
