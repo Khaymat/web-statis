@@ -3,20 +3,31 @@
 @tailwind utilities;
 
 :root {
-  /* Updated color scheme to feminine pink palette */
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 255, 250, 252;
-  --background-end-rgb: 255, 240, 248;
-  --primary: 236, 72, 153;
-  --primary-foreground: 255, 255, 255;
-  --accent: 244, 114, 182;
-  --accent-light: 251, 207, 232;
-  --neutral-dark: 88, 28, 135;
+  /* Dark feminine color palette */
+  --background-start-rgb: 18, 18, 18; /* Near-black */
+  --background-end-rgb: 24, 24, 24; /* Slightly lighter dark */
+  --foreground-rgb: 245, 245, 245; /* Off-white for text */
+
+  --primary: 216, 160, 167; /* Dusty Pink */
+  --primary-foreground: 18, 18, 18; /* Dark text for primary buttons */
+
+  --accent: 245, 197, 184; /* Peach */
+  --accent-light: 255, 229, 221; /* Lighter Peach */
+
+  --border: 50, 50, 50;
+  --input: 60, 60, 60;
+  --ring: 216, 160, 167; /* Dusty Pink for focus rings */
+
+  --radius: 0.5rem;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(135deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  background-color: rgb(var(--background-start-rgb));
+  /* A subtle gradient and a placeholder for the floral pattern */
+  background-image: linear-gradient(135deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb))), url('/floral-pattern.svg');
+  background-blend-mode: overlay;
+  background-size: cover;
 }
 
 html {
@@ -32,11 +43,6 @@ html {
 .overflow-y-auto {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-}
-
-.dark {
-  --primary: 236, 72, 153;
-  --primary-foreground: 255, 255, 255;
 }
 
 @layer utilities {

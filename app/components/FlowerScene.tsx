@@ -10,7 +10,7 @@ function FlowerModel() {
 
 export default function FlowerScene() {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen isolate">
       <Canvas>
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
