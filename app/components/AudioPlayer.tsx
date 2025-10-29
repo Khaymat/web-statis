@@ -23,7 +23,7 @@ export default function AudioPlayer() {
       <audio ref={audioRef} src="/ambient-music.mp3" autoPlay loop />
       <button
         onClick={togglePlay}
-        className="p-3 bg-white rounded-full shadow-lg text-brand-pink-700 hover:bg-brand-pink-100 transition-colors"
+        className="p-3 bg-[rgb(var(--primary))] rounded-full shadow-lg text-[rgb(var(--primary-foreground))] hover:bg-[rgb(var(--primary))] hover:opacity-80 transition-opacity"
       >
         {isPlaying ? <Volume2 /> : <VolumeX />}
       </button>
